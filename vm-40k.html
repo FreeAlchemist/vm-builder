@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>40K_builder_vue</title>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="css/40k.css">
+	<link rel="stylesheet" type="text/css" href="css/general.css">
+  <link rel="stylesheet" type="text/css" href="css/vm-40k.css">
+</head>
+<body>
+
+<div id="menu">
+	<div class="menupart">
+		<input type="button" id="roster-btn"  class="menubtn" value="Roster" title="Generate Army Roster" onclick=detToggle()></input>
+	</div>
+	<div class="menupart">
+		<div>Army select</div>
+		<select name="armyselect" id="armyselect" size="1"></select>
+	</div>
+	<div class="menupart">
+		<div>Point system</div>
+		<select name="pointsystem" id="pointsystem" size="1">
+			<!-- <option value="powerpoints"  label="Power Points"></option> -->
+			<option value="points" selected="selected" label="Matched Points"></option>
+		</select>
+	</div>
+	<div class="menupart">
+		<a href="index.html" class="menubtn">Menu</a>
+	</div>
+</div>
+<div id="detachments">
+	<table cellpadding = "0px" cellspacing = "0px" id="detachment"></table>
+</div>
+
+<div id="page">
+  <!-- ROSTERTABLE -->
+  <!-- SPECIAL RULES (Canticles of the Omnissiah, Warp Storm, etc) -->
+  <!-- ADAPTATIONS (Dogma, Hive Fleet, etc) -->
+  <!-- TRAITS -->
+  <!-- RELICS -->
+  <!-- MAGIC -->
+  <!-- WARSCROLLS -->
+    <!-- UNIT -->
+      <!-- MODEL -->
+      <!-- <modelstats v-bind="model"></modelstats> -->
+      <modelstats></modelstats>
+      <button-counter></button-counter>
+  <!-- {{message}} -->
+</div>
+
+
+<!-- <div id="copyright" class="copyright">
+	<p>Web part, translation to russian, <a href="http://www.github.com/freealchemist">FreeAlchemist</a></p>
+	<p>Contents copyright ©, <a href="http://www.games-workshop.com">Games Workshop</a></p>
+</div> -->
+
+<!-- <div id="app">
+	{{message}}
+</div>
+
+<hr>
+
+<div id="app-2">
+  <span v-bind:title="message">
+    Наведи курсор на меня пару секунд,
+    чтобы увидеть динамически связанное значение title!
+  </span>
+</div>
+
+<hr>
+
+<div id="app-3">
+  <span v-if="seen">Видимый текст</span>
+  <span v-else="seen">Невидимый текст</span>
+</div>
+
+<hr>
+<div id="app-4">
+  <ol>
+  	{{message}}
+    <li v-for="todo in todos" v-bind:style="{ color: todo.color}">
+      {{todo.text}}
+    </li>
+  </ol>
+</div>
+
+<hr>
+
+<div id="app-5">
+  <p>{{ message }}</p>
+  <button v-on:click="reverseMessage">Перевернуть сообщение</button>
+</div>
+
+<hr>
+
+<div id="app-6">
+  <p>{{ message }}</p>
+  <input v-model="message">
+</div>
+
+<hr>
+
+<div id="todo-list-example">
+  <form v-on:submit.prevent="addNewTodo">
+    <label for="new-todo">Добавить задачу</label>
+    <input
+      v-model="newTodoText"
+      id="new-todo"
+      placeholder="Например, покормить кита"
+    >
+    <button>Добавить</button>
+  </form>
+  <ul>
+    <li
+      is="todo-item"
+      v-for="(todo, index) in todos"
+      v-bind:key="todo.id"
+      v-bind:title="todo.title"
+      v-on:remove="todos.splice(index, 1)"
+    ></li>
+  </ul>
+</div> -->
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/general.js"></script>
+<script type="text/javascript" src="js/library_40k.js"></script>
+<script type="text/javascript" src="js/40k.js"></script>
+<script type="text/javascript" src="js/vue.js"></script>
+<script type="text/javascript" src="js/vm-40k.js"></script>
+</body>
+</html>

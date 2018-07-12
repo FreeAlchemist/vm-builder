@@ -1,0 +1,254 @@
+#unitsmenu{
+	position: fixed;
+    top: 100px;
+    right: 10px;
+    float: right;
+    border: 1px solid Black;
+    font-size: 10pt;
+    z-index: 100;
+    width: 440px;
+    box-shadow: #291109 0px 4px 8px;
+    color: Black;
+}
+#unitsmenulist{
+	overflow: auto;
+	max-height: 610px;
+	margin-top: 5px;
+}
+#legionselect:hover{cursor: pointer;}
+.warscroll{
+	border:0.5mm solid;
+	width:20cm;
+	margin-top: 20px;
+	font-size: 10pt;
+	background-color: black;
+	page-break-inside:avoid;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+table.warscroll{
+	margin-bottom: -3px;
+	margin-top: 0px;
+}
+.chars{
+	min-height: 1cm;
+    margin-bottom: 2mm;
+    background-color: black;
+}
+.name{
+	padding-left: 3mm;
+	position: relative;
+	border: solid black;
+	width: 7.14cm;
+	float: left;
+	line-height: 11mm;
+	border-width: 0mm 0.5mm 1mm 0.5mm;
+	font-size: 12pt;
+}
+.stats{
+	margin: 0px;
+	position: relative;
+	width:2.5cm;
+	float:left;
+	height: 1cm;
+	text-align: center;
+}
+.statsheader{
+	border:solid black;
+	border-bottom-width: 0.5mm;
+	background-color: black;
+	color: Linen;
+	border-width: 1mm 0.5mm 1mm 0.5mm;
+}
+.statstext{
+	border-top-width: 0.5mm;
+	border:solid black;
+	border-width: 1mm 0.5mm 1mm 0.5mm;
+}
+.weapon,.weapon2{min-height: 0.5cm;}
+.weapon-stats-header,.weapon-stats-text{
+	margin: 0px;
+	position: relative;
+	width:2.5cm;
+	float:left;
+	text-align: center;
+	border:solid Gray;
+	border-width: 0.5mm;
+}
+.weapon-name,.weapon-type{
+	padding-left: 3mm;
+	position: relative;
+	border:solid black;
+	width: 4.7cm;
+	float:left;
+	border-right-width: 0.5mm;
+	border-width: 0.5mm;
+}
+.weapon-name{border-color: gray;}
+.weapon-stats-text{
+	border-color: gray;
+	float:none;
+}
+.weapon-stats{
+	min-height: 0.5cm;
+	background-color: black;
+	font-size: 10pt;
+}
+.weapon-stats-header{float:none;}
+.abilities{
+	width:100%;
+	font-size: 10pt;
+	min-height: 0.5cm;
+}
+.header{
+	padding-left: 3mm;
+	height: 0.5cm;
+	text-align: left;
+	border-top:1mm solid Black;
+}
+.ability{
+	border-top:1mm solid Gray;
+	width:100%;
+	min-height: 1cm;
+}
+.abilityheader{
+	padding-left: 3mm;
+	border-right:0.5mm solid Gray;
+	border-top:0.5mm solid Gray;
+	width:3.5cm;
+}
+.abilitytext{
+	padding-left: 3mm;
+	padding-top: 1mm;
+	border-top:0.5mm solid Gray;
+}
+.spell-header-name,.spell-header{
+	border-right:0.5mm solid Gray;
+	border-top:0.5mm solid Gray;
+	border-top:1mm solid Black;
+}
+.spell-header-name,.spell-name{
+	width:3.5cm;
+	padding-left: 3mm;
+}
+.spell-header{
+	text-align: center;
+	padding-left: 3mm;
+	padding-right: 3mm;
+}
+.spell-name,.spell-text{
+	padding-left: 3mm;
+	border-right:0.5mm solid Gray;
+	border-top:0.5mm solid Gray;
+}
+.keywords{
+	border-top:0.5mm solid Gray;
+	padding-left: 3mm;
+	min-height: 0.6cm;
+	line-height: 0.6cm;
+}
+#rostertable{
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	margin-bottom: 20px;
+	border-radius: 5px;
+	border: none;
+}
+.army-header{
+	padding-left: 3mm;
+	padding-right: 3mm;
+	text-align: left;
+	border:solid Gray;
+	border-width: 0.5mm;
+}
+.army-text{
+	padding-left: 3mm;
+	text-align: left;
+	border:solid Gray;
+	border-width: 0.5mm;
+	color: rgba(124,144,82,1);
+	font-weight: bold;
+	font-size: 16px;
+}
+.unitnum{
+	width: 30px;
+	padding: 2px;
+}
+#unitpoints{
+	position: absolute;
+    top: 0px;
+    right: 20px;
+}
+.legionname{width: 200px;}
+.name,.statstext,.weapon-name,.weapon-stats-text,.abilities,.spell-name,.spell-text,.keywords,.army-text,table.warscroll{
+	background-color: white;
+}
+#unitsmenu,.weapon-type,.weapon-stats-header,.header,.spell-header-name,.spell-header,.army-header{
+	background-color: rgb(234, 230, 225);
+}
+.weapon-stats-header,.header,.abilityheader,.spell-header-name,.spell-header,.army-header{
+	text-transform: uppercase;
+}
+
+.icon{
+	width: 25px;
+	height: 25px;
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+.soulblight{background-image:url(../img/soulblight.svg);}
+.deathrattle{background-image:url(../img/deathrattle.svg);}
+.death{background-image:url(../img/death.svg);}
+.deathmages{background-image:url(../img/deathmages.svg);}
+.deadwalkers{background-image:url(../img/deadwalkers.svg);}
+.nighthaunt{background-image:url(../img/nighthaunt.svg);}
+/*
+icon:'soulblight',
+icon:'deathrattle',
+icon:'deathmages',
+icon:'death',
+icon:'deadwalkers',
+icon:'nighthaunt',
+*/
+
+/*--- PRINT ---*/
+	@media print{
+		#menu,#unitsmenu,.noprint,.wrap_closed,.wrap{
+			display: none;
+		}
+		.weapon-type,.weapon-stats-header,.header,.spell-header-name,.spell-header,.army-header{
+			/*background-color: Gainsboro;*/
+			background-color: rgba(211, 204, 199, 1);
+		}
+		.army-header{
+			/*text-transform: uppercase;*/
+			padding-left: 3mm;
+			padding-right: 3mm;
+			text-align: left;
+			border:solid Gray;
+			border-width: 0.5mm;
+		}
+		.army-text{
+			color: black;
+			font-weight: normal;
+			font-size: 14px;
+			background-color: white;
+			padding-left: 3mm;
+			text-align: left;
+			border:solid Gray;
+			border-width: 0.5mm;
+		}
+		#rostertable{
+			box-shadow: none;
+			margin-bottom: 0px;
+			border-radius: 0px;
+		}
+		.warscroll{
+			border:1mm solid;
+			border-radius: 0px;
+			width:20cm;
+			margin-top: 20px;
+			font-size: 10pt;
+			background-color: black;
+			page-break-inside:avoid;
+			box-shadow: none;
+		}
+	}

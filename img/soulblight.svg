@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<!-- Создано Microsoft Visio 11.0, Экспорт SVG, версия 1.0 soulblight.svg Страница-1 -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"
+		xmlns:v="http://schemas.microsoft.com/visio/2003/SVGExtensions/" width="1.06759in" height="1.06759in"
+		viewBox="0 0 76.8661 76.8661" xml:space="preserve" color-interpolation-filters="sRGB" class="st3">
+	<v:documentProperties v:langID="1049" v:metric="true" v:viewMarkup="false"/>
+
+	<style type="text/css">
+	<![CDATA[
+		.st1 {fill:#ffffff;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:3}
+		.st2 {fill:#000000;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5}
+		.st3 {fill:none;fill-rule:evenodd;font-size:12px;overflow:visible;stroke-linecap:square;stroke-miterlimit:3}
+	]]>
+	</style>
+
+	<g v:mID="0" v:index="1" v:groupContext="foregroundPage">
+		<title>Страница-1</title>
+		<v:pageProperties v:drawingScale="0.0393701" v:pageScale="0.0393701" v:drawingUnits="24" v:shadowOffsetX="8.50394"
+				v:shadowOffsetY="-8.50394"/>
+		<g id="shape2-1" v:mID="2" v:groupContext="shape" transform="translate(3,-3)">
+			<title>Круг.28</title>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+			</v:userDefs>
+			<path d="M0 41.43 A35.4331 35.4331 0 0 1 70.87 41.43 A35.4331 35.4331 0 1 1 -0 41.43 Z" class="st1"/>
+		</g>
+		<g id="shape3-3" v:mID="3" v:groupContext="shape" transform="translate(7.32557,-23.6929)">
+			<title>Лист.3</title>
+			<path d="M62.21 62.85 C55.15 53.57 42.5 52.62 37.43 52.2 C43.76 57 37.43 59.74 31.11 59.74 C24.78 59.74 18.45 57 24.78
+						 52.2 C19.72 52.62 7.07 53.57 0 62.85 C12.13 56.31 18.96 60.43 18.45 68.65 C22.25 63.85 28.58 65.49 31.11
+						 76.87 C33.64 65.49 39.96 63.85 43.76 68.65 C43.25 60.43 50.09 56.31 62.21 62.85 Z" class="st2"/>
+		</g>
+	</g>
+</svg>
