@@ -9,44 +9,73 @@
 </head>
 <body>
 
-<div id="menu">
-	<div class="menupart">
-		<input type="button" id="roster-btn"  class="menubtn" value="Roster" title="Generate Army Roster" onclick=detToggle()></input>
-	</div>
-	<div class="menupart">
-		<div>Army select</div>
-		<select name="armyselect" id="armyselect" size="1"></select>
-	</div>
-	<div class="menupart">
-		<div>Point system</div>
-		<select name="pointsystem" id="pointsystem" size="1">
-			<!-- <option value="powerpoints"  label="Power Points"></option> -->
-			<option value="points" selected="selected" label="Matched Points"></option>
-		</select>
-	</div>
-	<div class="menupart">
-		<a href="index.html" class="menubtn">Menu</a>
-	</div>
-</div>
-<div id="detachments">
-	<table cellpadding = "0px" cellspacing = "0px" id="detachment"></table>
+<div id="builder">
+  <div id="menu">
+    <div class="menupart">
+      <input type="button" id="roster-btn"  class="menubtn" value="Roster" title="Generate Army Roster" onclick=detToggle()></input>
+    </div>
+    <div class="menupart">
+      <div>Army select</div>
+      <select name="armyselect" id="armyselect" size="1" v-model="selected">
+          <option v-for="(army, key) in armies" v-bind:value="key" v-bind:label="army.armyname"></option>
+      </select>
+     <span>Выбрано: {{ selected }}</span>
+    </div>
+    <div class="menupart">
+      <div>Point system</div>
+      <select name="pointsystem" id="pointsystem" size="1">
+        <!-- <option value="powerpoints"  label="Power Points"></option> -->
+        <option value="points" selected="selected" label="Matched Points"></option>
+      </select>
+    </div>
+    <div class="menupart">
+      <a href="index.html" class="menubtn">Menu</a>
+    </div>
+  </div>
+  <div id="detachments">
+    <table cellpadding = "0px" cellspacing = "0px" id="detachment"></table>
+  </div>
+
+  <div id="page">
+    <!-- ROSTERTABLE -->
+    <!-- SPECIAL RULES (Canticles of the Omnissiah, Warp Storm, etc) -->
+    <!-- ADAPTATIONS (Dogma, Hive Fleet, etc) -->
+    <!-- TRAITS -->
+    <!-- RELICS -->
+    <!-- MAGIC -->
+    <!-- WARSCROLLS -->
+      <!-- <div v-bind:id="dynamicId" v-for="(army, key) in armies"> -->
+    <div id="unitlist"> 
+      <div v-if="selected" v-bind:id="'unitlist-' + key" v-for="(army, key) in armies">
+        {{key}}: {{army.armyname}}
+      </div>
+      <!-- UNIT -->
+        <div v-if="selected" v-for="(unit, key) in units">
+         {{key}}: {{unit.name}}
+          <modelstats v-bind:model="unit"></modelstats>
+        </div>
+    </div>
+   <span>Выбрано: {{ selected }}</span>
+        <!-- MODEL -->
+
+        
+        <!-- <modelstats v-bind:model="ourmodel"></modelstats> -->
+        <!-- <modelstats></modelstats> -->
+        <!-- <weaponstats></weaponstats> -->
+        <!-- <abilities></abilities> -->
+        <!-- <keywords></keywords> -->
+        <!-- <modelstats v-bind="ourmodel"></modelstats> -->
+
+        <!-- <modelstats v-for="stats in ourmodel" v-bind="stats" ></modelstats> -->
+
+        <!-- <button-counter></button-counter> -->
+    <!-- {{message}} -->
+
+  </div>
 </div>
 
-<div id="page">
-  <!-- ROSTERTABLE -->
-  <!-- SPECIAL RULES (Canticles of the Omnissiah, Warp Storm, etc) -->
-  <!-- ADAPTATIONS (Dogma, Hive Fleet, etc) -->
-  <!-- TRAITS -->
-  <!-- RELICS -->
-  <!-- MAGIC -->
-  <!-- WARSCROLLS -->
-    <!-- UNIT -->
-      <!-- MODEL -->
-      <!-- <modelstats v-bind="model"></modelstats> -->
-      <modelstats></modelstats>
-      <button-counter></button-counter>
-  <!-- {{message}} -->
-</div>
+
+
 
 
 <!-- <div id="copyright" class="copyright">
@@ -124,7 +153,7 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/general.js"></script>
 <script type="text/javascript" src="js/library_40k.js"></script>
-<script type="text/javascript" src="js/40k.js"></script>
+<!-- <script type="text/javascript" src="js/40k.js"></script> -->
 <script type="text/javascript" src="js/vue.js"></script>
 <script type="text/javascript" src="js/vm-40k.js"></script>
 </body>

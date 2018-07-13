@@ -12,7 +12,33 @@
 
 */
 
-
+// var model = {
+//   name:'Cypher',
+//   role:'HQ',
+//   move:'7',
+//   ws:'2+',
+//   bs:'2+',
+//   strength:'4',
+//   toughness:'4',
+//   wounds:'5',
+//   degradate : ['5'],
+//   attacks:'4',
+//   leadership:'9',
+//   save:'3+',
+//   invulsave:'4+',
+//   models : [1,1],
+//   powerpoints:'6',
+//   pointspermodel:'110',
+//   weaponbasic : ['Basic melee','Frag grenade','Krak grenade','Cypher\'s bolt pistol','Cypher\'s plasma pistol'],
+//   abilities : {
+//     'Blazing weapons' : 'Cypher can use his pistols in your Shooting phase even if he has Advanced or Fallen Back in the same turn.',
+//     'Lord Cypher' : 'You can re-roll hit rolls of 1 made for friendly FALLEN units within 6" of Cypher.',
+//     'Mysterious Protection' : 'Cypher has a 4+ invulnerable save. In addition, roll a D6 if Cypher is slain, on roll of 2+, Cypher\'s model is still removed from play, but he is not considered to have been slain for the purposes of any mission victory conditions.',
+//     'No-one\'s Puppet' : 'Cypher cannot use the Daemonic Ritual ability, even though he has the Chaos and Character keywords.',
+//     },
+//   factionkeywords : 'IMPERIUM, CHAOS, FALLEN',
+//   keywords:'CHARACTER, INFANTRY, CYPHER',
+// }
 
 Vue.component('button-counter', {
   data: function () {
@@ -23,16 +49,84 @@ Vue.component('button-counter', {
   template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
 })
 
+
+
 Vue.component('modelstats', {
-  data: function () {
-    return {
-      count: 0
-    }
-  },
-  template: '<table> <tr><td>Move</td><td>WS</td></tr><tr><td>this.name</td><td>this.move</td></tr></table>'
+  props: ['model'],
+  template: `<table>
+ <tr>
+   <td>Move</td>
+   <td>WS</td>
+   <td>BS</td>
+   <td>S</td>
+   <td>T</td>
+   <td>W</td>
+   <td>A</td>
+   <td>LD</td>
+   <td>SV</td>
+   <td>INSV</td>
+ </tr>
+ <tr>
+   <td>{{model.move}}</td>
+   <td>{{model.ws}}</td>
+   <td>{{model.bs}}</td>
+   <td>{{model.strength}}</td>
+   <td>{{model.toughness}}</td>
+   <td>{{model.wounds}}</td>
+   <td>{{model.attacks}}</td>
+   <td>{{model.leadership}}</td>
+   <td>{{model.save}}</td>
+   <td>{{model.invulsave}}</td>
+ </tr>
+ </table>`
 })
 
+var builder = new Vue({
+  el: '#builder',
+  data: {
+    armies:library,
+    units:library.fallenangels.units,
+    selected: 'inquisition',
+    // army:armies[{{selected}}],
+    // units:army.units,
+  }
+})
+
+// var unitlist = new Vue({
+//   el: '#unitlist',
+//   data: {
+//     // armies:library,
+//     // army:library.fallenangels,
+//     // units:library.fallenangels.units,
+//     // ourmodel:library.fallenangels.units.cypher
+//   }
+// })
+
 /*
+<div class="chars">
+  <div class="name">
+
+  </div>
+  <table cellpadding="0px" cellspacing="0px" width="100%" class="topborder">
+    
+  </table>
+</div>
+<div class="weapon">
+
+</div>
+<div class="abilities">
+
+</div>
+<div class="keywords">
+
+</div>
+
+
+
+
+
+
+
  var table = $('<table />')
 table.attr('cellpadding',"0px")
 table.attr('cellspacing','0px')
@@ -69,40 +163,9 @@ var statsinfo = tr.append(td1).append(td2).append(td3).append(td4).append(td5).a
 $('#'+rosterarr[i]+'-'+i+'-statstable').append(statsinfo)
 */
 
-var model = {
-  name:'Cypher',
-  role:'HQ',
-  move:'7',
-  ws:'2+',
-  bs:'2+',
-  strength:'4',
-  toughness:'4',
-  wounds:'5',
-  degradate : ['5'],
-  attacks:'4',
-  leadership:'9',
-  save:'3+',
-  invulsave:'4+',
-  models : [1,1],
-  powerpoints:'6',
-  pointspermodel:'110',
-  weaponbasic : ['Basic melee','Frag grenade','Krak grenade','Cypher\'s bolt pistol','Cypher\'s plasma pistol'],
-  abilities : {
-    'Blazing weapons' : 'Cypher can use his pistols in your Shooting phase even if he has Advanced or Fallen Back in the same turn.',
-    'Lord Cypher' : 'You can re-roll hit rolls of 1 made for friendly FALLEN units within 6" of Cypher.',
-    'Mysterious Protection' : 'Cypher has a 4+ invulnerable save. In addition, roll a D6 if Cypher is slain, on roll of 2+, Cypher\'s model is still removed from play, but he is not considered to have been slain for the purposes of any mission victory conditions.',
-    'No-one\'s Puppet' : 'Cypher cannot use the Daemonic Ritual ability, even though he has the Chaos and Character keywords.',
-    },
-  factionkeywords : 'IMPERIUM, CHAOS, FALLEN',
-  keywords:'CHARACTER, INFANTRY, CYPHER',
-}
 
-var page = new Vue({
-  el: '#page',
-  data: {
-    message: 'Привет, мир Vue!'
-  }
-})
+
+
 
 
 // // example 1
