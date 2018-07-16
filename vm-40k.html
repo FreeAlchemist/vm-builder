@@ -12,14 +12,15 @@
 <div id="builder">
   <div id="menu">
     <div class="menupart">
-      <input type="button" id="roster-btn"  class="menubtn" value="Roster" title="Generate Army Roster" onclick=detToggle()></input>
+      <input type="button" id="roster-btn"  class="menubtn" value="Roster" title="Generate Army Roster"  v-on:click="getArmy"></input>
     </div>
     <div class="menupart">
       <div>Army select</div>
+      <!-- <select name="armyselect" id="armyselect" size="1" v-model="selected" v-on:change="getArmy"> -->
       <select name="armyselect" id="armyselect" size="1" v-model="selected">
-          <option v-for="(army, key) in armies" v-bind:value="key" v-bind:label="army.armyname"></option>
+          <option v-for="(army, key) in armies" v-bind:value="key" v-bind:label="army.armyname" ></option>
       </select>
-     <span>Выбрано: {{ selected }}</span>
+     <!-- <span>Выбрано: {{ selected }}</span> -->
     </div>
     <div class="menupart">
       <div>Point system</div>
@@ -46,16 +47,44 @@
     <!-- WARSCROLLS -->
       <!-- <div v-bind:id="dynamicId" v-for="(army, key) in armies"> -->
     <div id="unitlist"> 
-      <div v-if="selected" v-bind:id="'unitlist-' + key" v-for="(army, key) in armies">
-        {{key}}: {{army.armyname}}
-      </div>
+      <span>{{ army.armyname }}</span>
       <!-- UNIT -->
-        <div v-if="selected" v-for="(unit, key) in units">
-         {{key}}: {{unit.name}}
-          <modelstats v-bind:model="unit"></modelstats>
+
+        <div class="warscroll" v-if="selected" v-for="unit in units">
+          <div>
+            <div class="name">{{unit.name}} ({{unit.role}}) ({{unit.pointspermodel}} PTS)</div>
+            <modelstats v-bind:model="unit"></modelstats>
+          </div>
+          <div v-if="unit.weaponbasic">
+            <table class="topborder" cellpadding="0px" cellspacing="0px">
+             <tr>
+               <td class="stats-header">weapon</td>
+               <td class="stats-header">rng</td>
+               <td class="stats-header">type</td>
+               <td class="stats-header">S</td>
+               <td class="stats-header">AP</td>
+               <td class="stats-header">dmg</td>
+               <td class="stats-header">Ability</td>
+               <td class="stats-header">pts</td>
+             </tr>
+             <!-- <tr  v-for="(weapon, key) in unit.weaponbasic"> -->
+               <!-- {{key}}: {{weapon}} : {{unit.weaponbasic[key]}} -->
+               <weaponstats v-for="(weapon, key) in unit.weaponbasic" :key="weapon" v-bind:weapon="weapon" v-bind:weapons="weapons"></weaponstats>
+             <!-- </tr> -->
+             </table>
+          </div>
+          <div>
+            <div class="header">ABILITIES</div>
+            <div v-for="(ability, key) in unit.abilities">
+              <modelabilities v-bind:ability="key" v-bind:abilitytext="ability"></modelabilities>
+            </div>
+          </div>
+          <div>
+            <modelkeywords v-bind:model="unit"></modelkeywords>
+          </div>
         </div>
     </div>
-   <span>Выбрано: {{ selected }}</span>
+   
         <!-- MODEL -->
 
         
@@ -75,7 +104,8 @@
 </div>
 
 
-
+<!-- <div class="warscroll" v-if="selected" v-for="(unit, key) in units"> -->
+<!-- {{key}}: {{unit.name}} -->
 
 
 <!-- <div id="copyright" class="copyright">
