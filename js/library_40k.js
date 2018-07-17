@@ -7755,6 +7755,7 @@ var library = {
 					leadership:'9',
 					save:'3+',
 					invulsave:'4+',
+					models : [1,1],
 					powerpoints:'6',
 					pointspermodel:'110',
 					weaponbasic : ['Basic melee','Frag grenade','Krak grenade','Cypher\'s bolt pistol','Cypher\'s plasma pistol'],

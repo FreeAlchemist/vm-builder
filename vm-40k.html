@@ -12,6 +12,9 @@
 <div id="builder">
   <div id="menu">
     <div class="menupart">
+      <a href="index.html" class="menubtn">Menu</a>
+    </div>
+    <div class="menupart">
       <input type="button" id="roster-btn"  class="menubtn" value="Roster" title="Generate Army Roster"  v-on:click="getArmy"></input>
     </div>
     <div class="menupart">
@@ -22,16 +25,15 @@
       </select>
      <!-- <span>Выбрано: {{ selected }}</span> -->
     </div>
-    <div class="menupart">
+
+<!--     <div class="menupart">
       <div>Point system</div>
       <select name="pointsystem" id="pointsystem" size="1">
-        <!-- <option value="powerpoints"  label="Power Points"></option> -->
+        <option value="powerpoints"  label="Power Points"></option>
         <option value="points" selected="selected" label="Matched Points"></option>
       </select>
-    </div>
-    <div class="menupart">
-      <a href="index.html" class="menubtn">Menu</a>
-    </div>
+    </div> -->
+
   </div>
   <div id="detachments">
     <table cellpadding = "0px" cellspacing = "0px" id="detachment"></table>
@@ -49,29 +51,33 @@
     <div id="unitlist"> 
       <span>{{ army.armyname }}</span>
       <!-- UNIT -->
-
         <div class="warscroll" v-if="selected" v-for="unit in units">
           <div>
-            <div class="name">{{unit.name}} ({{unit.role}}) ({{unit.pointspermodel}} PTS)</div>
+            <div v-if="unit.models" class="name">
+            {{unit.name}}
+            ({{unit.role}})
+            ({{unit.pointspermodel}} PTS)
+            <span v-if="unit.models[0]==unit.models[1]">(Unique model)</span>
+            <span v-else>({{unit.models[0]}} - {{unit.models[1]}} models)</span>
+              <modelinput  
+              v-bind:name="unit.name" 
+              v-bind:value="unit.models[0]"
+              v-bind:min="0"
+              v-bind:max="unit.models[1]"
+              ></modelinput>
+            </div>
+            <div v-else class="name">{{unit.name}} ({{unit.role}}) ({{unit.pointspermodel}} PTS)
+              <modelinput  v-bind:name="unit.name" v-bind:value="1" v-bind:min="0" v-bind:max="10"></modelinput>
+            </div>
             <modelstats v-bind:model="unit"></modelstats>
           </div>
-          <div v-if="unit.weaponbasic">
-            <table class="topborder" cellpadding="0px" cellspacing="0px">
-             <tr>
-               <td class="stats-header">weapon</td>
-               <td class="stats-header">rng</td>
-               <td class="stats-header">type</td>
-               <td class="stats-header">S</td>
-               <td class="stats-header">AP</td>
-               <td class="stats-header">dmg</td>
-               <td class="stats-header">Ability</td>
-               <td class="stats-header">pts</td>
-             </tr>
-             <!-- <tr  v-for="(weapon, key) in unit.weaponbasic"> -->
-               <!-- {{key}}: {{weapon}} : {{unit.weaponbasic[key]}} -->
-               <weaponstats v-for="(weapon, key) in unit.weaponbasic" :key="weapon" v-bind:weapon="weapon" v-bind:weapons="weapons"></weaponstats>
-             <!-- </tr> -->
-             </table>
+          <div v-if="unit.weaponbasic" class="topborder">
+             <weaponheader></weaponheader>
+             <weaponstats v-for="(weapon, key) in unit.weaponbasic" :key="weapon" v-bind:weapon="weapon" v-bind:weapons="weapons"></weaponstats>
+          </div>
+          <div v-if="unit.weaponoption" class="topborder">
+             <weaponheader></weaponheader>
+             <weaponstats v-for="(weapon, key) in unit.weaponoption" :key="weapon" v-bind:weapon="weapon" v-bind:weapons="weapons"></weaponstats>
           </div>
           <div>
             <div class="header">ABILITIES</div>
@@ -84,100 +90,12 @@
           </div>
         </div>
     </div>
-   
-        <!-- MODEL -->
-
-        
-        <!-- <modelstats v-bind:model="ourmodel"></modelstats> -->
-        <!-- <modelstats></modelstats> -->
-        <!-- <weaponstats></weaponstats> -->
-        <!-- <abilities></abilities> -->
-        <!-- <keywords></keywords> -->
-        <!-- <modelstats v-bind="ourmodel"></modelstats> -->
-
-        <!-- <modelstats v-for="stats in ourmodel" v-bind="stats" ></modelstats> -->
-
-        <!-- <button-counter></button-counter> -->
-    <!-- {{message}} -->
-
   </div>
 </div>
-
-
-<!-- <div class="warscroll" v-if="selected" v-for="(unit, key) in units"> -->
-<!-- {{key}}: {{unit.name}} -->
-
 
 <!-- <div id="copyright" class="copyright">
 	<p>Web part, translation to russian, <a href="http://www.github.com/freealchemist">FreeAlchemist</a></p>
 	<p>Contents copyright ©, <a href="http://www.games-workshop.com">Games Workshop</a></p>
-</div> -->
-
-<!-- <div id="app">
-	{{message}}
-</div>
-
-<hr>
-
-<div id="app-2">
-  <span v-bind:title="message">
-    Наведи курсор на меня пару секунд,
-    чтобы увидеть динамически связанное значение title!
-  </span>
-</div>
-
-<hr>
-
-<div id="app-3">
-  <span v-if="seen">Видимый текст</span>
-  <span v-else="seen">Невидимый текст</span>
-</div>
-
-<hr>
-<div id="app-4">
-  <ol>
-  	{{message}}
-    <li v-for="todo in todos" v-bind:style="{ color: todo.color}">
-      {{todo.text}}
-    </li>
-  </ol>
-</div>
-
-<hr>
-
-<div id="app-5">
-  <p>{{ message }}</p>
-  <button v-on:click="reverseMessage">Перевернуть сообщение</button>
-</div>
-
-<hr>
-
-<div id="app-6">
-  <p>{{ message }}</p>
-  <input v-model="message">
-</div>
-
-<hr>
-
-<div id="todo-list-example">
-  <form v-on:submit.prevent="addNewTodo">
-    <label for="new-todo">Добавить задачу</label>
-    <input
-      v-model="newTodoText"
-      id="new-todo"
-      placeholder="Например, покормить кита"
-    >
-    <button>Добавить</button>
-  </form>
-  <ul>
-    <li
-      is="todo-item"
-      v-for="(todo, index) in todos"
-      v-bind:key="todo.id"
-      v-bind:title="todo.title"
-      v-on:remove="todos.splice(index, 1)"
-    ></li>
-  </ul>
 </div> -->
 
 <script type="text/javascript" src="js/jquery.min.js"></script>

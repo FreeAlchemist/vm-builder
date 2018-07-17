@@ -44,7 +44,7 @@ Vue.component('modelstats', {
   props: ['model'],
   template: `<table class="topborder" cellpadding="0px" cellspacing="0px">
  <tr>
-   <td class="stats-header">Move</td>
+   <td class="stats-header w-100">Move</td>
    <td class="stats-header">WS</td>
    <td class="stats-header">BS</td>
    <td class="stats-header">S</td>
@@ -70,6 +70,46 @@ Vue.component('modelstats', {
  </table>`
 })
 
+// Vue.component('weaponheader', {
+//   template: `   <div class="h-25">         
+//                <span class="stats-header float-left">weapon</span>
+//                <span class="stats-header float-left">rng</span>
+//                <span class="stats-header float-left">type</span>
+//                <span class="stats-header float-left">S</span>
+//                <span class="stats-header float-left">AP</span>
+//                <span class="stats-header float-left">dmg</span>
+//                <span class="stats-header float-left">Ability</span>
+//                <span class="stats-header float-left">pts</span>
+//              </div>`
+// })
+
+// Vue.component('weaponstats', {
+//   props: ['weapon','weapons'],
+//   template: `<div class="h-25">
+//    <span  class="stats-text  float-left">{{weapon}}</span>
+//    <span  class="stats-text  float-left">{{weapons[weapon].range}}</span>
+//    <span  class="stats-text  float-left">{{weapons[weapon].type}}</span>
+//    <span  class="stats-text  float-left">{{weapons[weapon].strength}}</span>
+//    <span  class="stats-text  float-left">{{weapons[weapon].ap}}</span>
+//    <span  class="stats-text  float-left">{{weapons[weapon].damage}}</span>
+//    <span  class="stats-text  float-left">{{weapons[weapon].ability}}</span>
+//    <span  class="stats-text  float-left">{{weapons[weapon].points}}</span>
+//  </div>`
+// })
+
+Vue.component('weaponheader', {
+  template: `            <tr>
+               <td class="stats-header w-100">weapon</td>
+               <td class="stats-header w-30">rng</td>
+               <td class="stats-header w-45">type</td>
+               <td class="stats-header w-20">S</td>
+               <td class="stats-header">AP</td>
+               <td class="stats-header">dmg</td>
+               <td class="stats-header w-430">Ability</td>
+               <td class="stats-header">pts</td>
+             </tr>`
+})
+
 Vue.component('weaponstats', {
   props: ['weapon','weapons'],
   template: `<tr>
@@ -81,7 +121,13 @@ Vue.component('weaponstats', {
    <td  class="stats-text">{{weapons[weapon].damage}}</td>
    <td  class="stats-text">{{weapons[weapon].ability}}</td>
    <td  class="stats-text">{{weapons[weapon].points}}</td>
+   <modelinput v-bind:name="weapon" v-bind:value="1"></modelinput>
  </tr>`
+})
+
+Vue.component('modelinput', {
+  props: ['model','weapon','weapons'],
+  template: `<input class="modelnum noprint" type="number" min="0" max="10" value="5"></input>`
 })
 
 Vue.component('modelabilities', {
@@ -113,8 +159,8 @@ var builder = new Vue({
   data: {
     armies:library,
     // units:library.fallenangels.units,
-    units:library.inquisition.units,
-    selected: 'inquisition',
+    units:library.fallenangels.units,
+    selected: 'fallenangels',
     army:Object,
     weapons:Object,
     abilities:Object,
@@ -128,41 +174,34 @@ var builder = new Vue({
   methods:{
     getArmy: function (){
       this.army = library[this.selected]
-      // console.log('army')
-      // console.log(this.army)
-      // console.log('')
-      // console.log('weapons')
       this.weapons = library[this.selected].weapons
-      // console.log(this.weapons)
-      // console.log('')
-      // console.log('abilities')
       this.abilities = library[this.selected].abilities
-      // console.log(this.abilities)
-      // console.log('')
-      // console.log('specialrules')
       this.specialrules = library[this.selected].specialrules
-      // console.log(this.specialrules)
-      // console.log('')
-      // console.log('traits')
       this.traits = library[this.selected].traits
-      // console.log(this.traits)
-      // console.log('')
-      // console.log('relics')
       this.relics = library[this.selected].relics
-      // console.log(this.relics)
-      // console.log('')
-      // console.log('adaptation')
       this.adaptation = library[this.selected].adaptation
-      // console.log(this.adaptation)
-      // console.log('')
-      // console.log('magic')
       this.magic = library[this.selected].magic
-      // console.log(this.magic)
-      // console.log('')
-      // console.log('units')
       this.units = library[this.selected].units
-      // console.log(this.units)
-      // console.log('')
     },
   },
 })
+
+
+
+
+/*
+https://ru.vuejs.org/v2/guide/forms.html
+http://css3generator.com/
+https://www.alt-codes.net/arrow_alt_codes.php
+https://habr.com/company/mailru/blog/273267/
+http://jquery.com/
+http://php.net/manual/en/
+https://htmlweb.ru/php/example/download.php
+http://www.w3schools.com/xml/xml_elements.asp
+http://www.artlebedev.ru/tools/decoder/
+https://regex101.com/
+http://xmlhttprequest.ru/
+https://webref.ru/html
+https://html5book.ru/css3-animation/
+http://sass-lang.com/documentation/file.SASS_REFERENCE.html
+*/
