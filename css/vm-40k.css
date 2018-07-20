@@ -86,3 +86,12 @@ a.menubtn{width: 175px;}
 	background-color: Cornsilk;
 	font-size: 12pt;
 }
+
+.modelpts{
+	border: 1px black solid;
+	padding: 5px;
+	width: 35px;
+	background-color: Cornsilk;
+	color: black;
+	font-size: 12pt;
+}

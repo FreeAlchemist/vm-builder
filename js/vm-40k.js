@@ -111,7 +111,7 @@ Vue.component('weaponheader', {
 })
 
 Vue.component('weaponstats', {
-  props: ['weapon','weapons'],
+  props: ['weapon','weapons','modelname'],
   template: `<tr>
    <td  class="stats-text">{{weapon}}</td>
    <td  class="stats-text">{{weapons[weapon].range}}</td>
@@ -121,13 +121,29 @@ Vue.component('weaponstats', {
    <td  class="stats-text">{{weapons[weapon].damage}}</td>
    <td  class="stats-text">{{weapons[weapon].ability}}</td>
    <td  class="stats-text">{{weapons[weapon].points}}</td>
-   <modelinput v-bind:name="weapon" v-bind:value="1"></modelinput>
+   <modelinput v-bind:name="modelname+'-'+weapon" v-bind:value="1"></modelinput>
  </tr>`
 })
 
 Vue.component('modelinput', {
-  props: ['model','weapon','weapons'],
-  template: `<input class="modelnum noprint" type="number" min="0" max="10" value="5"></input>`
+  data:function(){
+    return{
+      modelnum:'1',
+      // pts:pts,
+    }
+  },
+  props: ['model','weapon','weapons','pts'],
+  template: `<span><input v-model="modelnum" class="modelnum noprint" type="number" min="0" max="10" value="5"></input><span class="modelpts noprint">{{modelnum}}|{{ptsUnit}}|{{pts}}</span></span>`,
+  computed:{
+    ptsUnit:function(){
+      return parseInt(this.modelnum)*parseInt(2)
+    }
+  }
+  // methods:{
+  //   getPoints: function (){
+  //     this.army = library[this.selected]
+  //   },
+  // },
 })
 
 Vue.component('modelabilities', {
@@ -158,7 +174,6 @@ var builder = new Vue({
   el: '#builder',
   data: {
     armies:library,
-    // units:library.fallenangels.units,
     units:library.fallenangels.units,
     selected: 'fallenangels',
     army:Object,
@@ -185,7 +200,6 @@ var builder = new Vue({
     },
   },
 })
-
 
 
 
