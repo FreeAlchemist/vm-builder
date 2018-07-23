@@ -91,7 +91,17 @@ a.menubtn{width: 175px;}
 	border: 1px black solid;
 	padding: 5px;
 	width: 35px;
-	background-color: Cornsilk;
+	background-color: blanchedalmond;
 	color: black;
 	font-size: 12pt;
+}
+.weaponpts{
+	border: 1px black solid;
+	padding: 5px;
+	width: 25px;
+	background-color: White;
+	color: black;
+	font-size: 12pt;
+	position: absolute;
+	left: 820px;
 }

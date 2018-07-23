@@ -76,11 +76,11 @@
           </div>
           <div v-if="unit.weaponbasic" class="topborder">
              <weaponheader></weaponheader>
-             <weaponstats v-for="(weapon, key) in unit.weaponbasic" :key="weapon" v-bind:weapon="weapon" v-bind:weapons="weapons" v-bind:modelname="unit.name"></weaponstats>
+             <weaponstats v-for="(weapon, key) in unit.weaponbasic" :key="weapon" v-bind:weapon="weapon" v-bind:weapons="weapons" v-bind:modelname="unit.name" v-bind:weaponmum="1"></weaponstats>
           </div>
           <div v-if="unit.weaponoption" class="topborder">
              <weaponheader></weaponheader>
-             <weaponstats v-for="(weapon, key) in unit.weaponoption" :key="weapon" v-bind:weapon="weapon" v-bind:weapons="weapons" v-bind:modelname="unit.name"></weaponstats>
+             <weaponstats v-for="(weapon, key) in unit.weaponoption" :key="weapon" v-bind:weapon="weapon" v-bind:weapons="weapons" v-bind:modelname="unit.name" v-bind:weaponmum="0"></weaponstats>
           </div>
           <div>
             <div class="header">ABILITIES</div>

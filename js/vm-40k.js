@@ -111,7 +111,7 @@ Vue.component('weaponheader', {
 })
 
 Vue.component('weaponstats', {
-  props: ['weapon','weapons','modelname'],
+  props: ['weapon','weapons','modelname','weaponnum'],
   template: `<tr>
    <td  class="stats-text">{{weapon}}</td>
    <td  class="stats-text">{{weapons[weapon].range}}</td>
@@ -121,7 +121,7 @@ Vue.component('weaponstats', {
    <td  class="stats-text">{{weapons[weapon].damage}}</td>
    <td  class="stats-text">{{weapons[weapon].ability}}</td>
    <td  class="stats-text">{{weapons[weapon].points}}</td>
-   <modelinput v-bind:name="modelname+'-'+weapon" v-bind:value="1"></modelinput>
+   <weaponinput v-bind:name="modelname+'-'+weapon" v-bind:value="7" v-bind:pts="weapons[weapon].points"></weaponinput>
  </tr>`
 })
 
@@ -129,21 +129,35 @@ Vue.component('modelinput', {
   data:function(){
     return{
       modelnum:'1',
-      // pts:pts,
     }
   },
   props: ['model','weapon','weapons','pts'],
   template: `<span><input v-model="modelnum" class="modelnum noprint" type="number" min="0" max="10" value="5"></input><span class="modelpts noprint">{{modelnum}}|{{ptsUnit}}|{{pts}}</span></span>`,
   computed:{
     ptsUnit:function(){
-      return parseInt(this.modelnum)*parseInt(2)
+      return parseInt(this.modelnum)*parseInt(this.pts)
     }
   }
-  // methods:{
-  //   getPoints: function (){
-  //     this.army = library[this.selected]
-  //   },
-  // },
+})
+
+Vue.component('weaponinput', {
+  data:function(){
+    return{
+      modelnum:'1',
+    }
+  },
+  props: ['model','weapon','weapons','pts'],
+  template: `<input v-model="modelnum" class="modelnum noprint" type="number" min="0" max="11" value="8"></input>`,
+  // template: `
+  // <span>
+  //   <input v-model="modelnum" class="modelnum noprint" type="number" min="0" max="11" value="8"></input>
+  //   <span class="weaponpts noprint">{{ptsWeapon}}</span>
+  // </span>`,
+  computed:{
+    ptsWeapon:function(){
+      return parseInt(this.modelnum)*parseInt(this.pts)
+    }
+  }
 })
 
 Vue.component('modelabilities', {
