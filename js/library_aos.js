@@ -642,7 +642,7 @@ var units = {
 			wounds:'5',
 			bravery:'10',
 			save:'4+',
-			points:'',
+			points:'140',
 			icon:'nighthaunt',
 			weapon : {
 				'Chill Blade' : {
@@ -682,7 +682,7 @@ var units = {
 			wounds:'5',
 			bravery:'10',
 			save:'4+',
-			points:'',
+			points:'80',
 			icon:'nighthaunt',
 			weapon : {
 				'Decapitating Greataxe' : {
@@ -715,7 +715,7 @@ var units = {
 			wounds:'1',
 			bravery:'6',
 			save:'5+',
-			points:'',
+			points:'80',
 			icon:'nighthaunt',
 			weapon : {
 				'Dreadwarden\'s Malignant Weapon' : {

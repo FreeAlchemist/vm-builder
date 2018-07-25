@@ -8,7 +8,13 @@ a.menubtn{width: 175px;}
 	background-color: Gainsboro;
 	border:1mm solid;
 	width: 19.8cm;
-	font-size: 10pt;
+	font-size: 8pt;
+	page-break-inside:avoid;
+}
+.special{
+	background-color: Cornsilk;
+	border:1mm solid;
+	width: 19.8cm;
 	font-size: 8pt;
 	page-break-inside:avoid;
 }

@@ -70,6 +70,21 @@ Vue.component('modelstats', {
  </table>`
 })
 
+Vue.component('modelinput', {
+  data:function(){
+    return{
+      modelnum:'1',
+    }
+  },
+  props: ['model','weapon','weapons','pts'],
+  template: `<span><input v-model="modelnum" class="modelnum noprint" type="number" min="0" max="10" value="5"></input><span class="modelpts noprint">{{modelnum}}|{{ptsUnit}}|{{pts}}</span></span>`,
+  computed:{
+    ptsUnit:function(){
+      return parseInt(this.modelnum)*parseInt(this.pts)
+    }
+  }
+})
+
 // Vue.component('weaponheader', {
 //   template: `   <div class="h-25">         
 //                <span class="stats-header float-left">weapon</span>
@@ -125,37 +140,23 @@ Vue.component('weaponstats', {
  </tr>`
 })
 
-Vue.component('modelinput', {
-  data:function(){
-    return{
-      modelnum:'1',
-    }
-  },
-  props: ['model','weapon','weapons','pts'],
-  template: `<span><input v-model="modelnum" class="modelnum noprint" type="number" min="0" max="10" value="5"></input><span class="modelpts noprint">{{modelnum}}|{{ptsUnit}}|{{pts}}</span></span>`,
-  computed:{
-    ptsUnit:function(){
-      return parseInt(this.modelnum)*parseInt(this.pts)
-    }
-  }
-})
-
 Vue.component('weaponinput', {
   data:function(){
     return{
-      modelnum:'1',
+      weaponnum:'0',
     }
   },
-  props: ['model','weapon','weapons','pts'],
-  template: `<input v-model="modelnum" class="modelnum noprint" type="number" min="0" max="11" value="8"></input>`,
-  // template: `
-  // <span>
-  //   <input v-model="modelnum" class="modelnum noprint" type="number" min="0" max="11" value="8"></input>
-  //   <span class="weaponpts noprint">{{ptsWeapon}}</span>
-  // </span>`,
+  // props: ['model','weapon','weapons','pts'],
+  props: ['pts'],
+  // template: `<input v-model="modelnum" class="modelnum noprint" type="number" min="0" max="11" value="8"></input>`,
+  template: `
+  <span>
+    <span class="weaponpts noprint">{{ptsWeapon}}</span>
+    <input v-model="weaponnum" class="modelnum noprint" type="number" min="0" max="11" value="8"></input>
+  </span>`,
   computed:{
     ptsWeapon:function(){
-      return parseInt(this.modelnum)*parseInt(this.pts)
+      return parseInt(this.weaponnum)*parseInt(this.pts)
     }
   }
 })
@@ -188,6 +189,7 @@ var builder = new Vue({
   el: '#builder',
   data: {
     armies:library,
+    detachments:library.detachments,
     units:library.fallenangels.units,
     selected: 'fallenangels',
     army:Object,
