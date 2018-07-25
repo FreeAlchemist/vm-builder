@@ -1,4 +1,17 @@
 var detachments = {
+	// combinedarms : {
+	// 	name : 'Combined Arms',
+	// 	cp : '0',
+	// 	hq : [1,2],
+	// 	troops : [2,6],
+	// 	elites : [0,3],
+	// 	fast : [0,3],
+	// 	heavy : [0,3],
+	// 	flyers : [0,0],
+	// 	dedicated : [0,0],
+	// 	low : [0,1],
+	// 	fortification : [0,1],
+	// },
 	patrol : {
 		name : 'Patrol',
 		cp : '0',

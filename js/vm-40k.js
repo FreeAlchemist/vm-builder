@@ -189,9 +189,9 @@ var builder = new Vue({
   el: '#builder',
   data: {
     armies:library,
-    detachments:library.detachments,
+    detachments:detachments,
     units:library.fallenangels.units,
-    selected: 'fallenangels',
+    selected: 'darkangels',
     army:Object,
     weapons:Object,
     abilities:Object,
@@ -201,6 +201,8 @@ var builder = new Vue({
     adaptation:Object,
     magic:Object,
     units:Object,
+    showarmyinfo:false,
+    showdetachments:false,
   },
   methods:{
     getArmy: function (){
@@ -217,7 +219,14 @@ var builder = new Vue({
   },
 })
 
-
+function getTo(elemid){
+  var elmnt = document.getElementById(elemid);
+elmnt.scrollIntoView();
+}
+/*
+var elmnt = document.getElementById("primarismastergravis");
+elmnt.scrollIntoView();
+*/
 
 /*
 https://ru.vuejs.org/v2/guide/forms.html

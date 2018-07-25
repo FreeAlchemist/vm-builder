@@ -4,16 +4,16 @@
 	<title>40K_builder_vue</title>
 	<meta charset="UTF-8"/>
 	<link rel="stylesheet" type="text/css" href="css/40k.css">
-	<link rel="stylesheet" type="text/css" href="css/general.css">
+	<!-- <link rel="stylesheet" type="text/css" href="css/general.css"> -->
   <link rel="stylesheet" type="text/css" href="css/vm-40k.css">
 </head>
 <body>
 
 <div id="builder">
   <div id="menu">
-    <div class="menupart">
+<!--     <div class="menupart">
       <a href="index.html" class="menubtn">Menu</a>
-    </div>
+    </div> -->
     <div class="menupart">
       <input type="button" id="roster-btn" class="menubtn" value="Units" title="Show Army Units"  v-on:click="getArmy"></input>
     </div>
@@ -23,80 +23,214 @@
           <option v-for="(army, key) in armies" v-bind:value="key" v-bind:label="army.armyname" ></option>
       </select>
     </div>
-    <!--     <div class="menupart">
-          <div>Point system</div>
-          <select name="pointsystem" id="pointsystem" size="1">
-            <option value="powerpoints"  label="Power Points"></option>
-            <option value="points" selected="selected" label="Matched Points"></option>
-          </select>
-        </div> -->
+    <div class="menupart">
+      <input type="checkbox" id="armyinfocheckbox" v-model="showarmyinfo">
+      <label for="armyinfocheckbox">Show army info</label>
+    </div>
+    <div class="menupart">
+      <input type="checkbox" id="detachmentscheckbox" v-model="showdetachments">
+      <label for="detachmentscheckbox">Show detachments</label>
+    </div>
+    <div class="menupart" >
+      <table class="topborder" cellpadding="0px" cellspacing="0px" id="unitmenu">
+        <tr v-if="selected" v-for="(unit,key,index) in units">
+          <td>{{unit.role}}</td>
+          <td>{{unit.name}}</td>
+          <!-- <td>{{key}}</td> -->
+        </tr>
+      </table>
+    </div>
   </div>
-  <div id="detachments">
-      <!-- <div v-for="detachment in detachments">{{detachment.name}}</div> -->
-  </div>
-  <!-- <div v-for="(detachment, key) in detachments">{{key}}</div> -->
-
   <div id="page">
     <!-- ROSTERTABLE -->
+    <template v-if="showdetachments">
+      <!-- <div v-if="detachments" class="special"> -->
+      <div id="overlay" v-if="army.armyname">
+        <div id="detachments">
+          <h2>DETACHMENTS</h2>
+          <table class="topborder" cellpadding="0px" cellspacing="0px" id="detachment">
+            <tr>
+              <td></td>
+              <td>CP</td>
+              <td>HQ</td>
+              <td>TROOPS</td>
+              <td>ELITES</td>
+              <td>FAST</td>
+              <td>HEAVY</td>
+              <td>FLYERS</td>
+              <td>DEDICATED TRANSPORT</td>
+              <td>LORD OF WAR</td>
+              <td>FORTIFICATION</td>
+            </tr>
+            <tr v-for="(detachment, key, index) in detachments">
+              <td>{{detachment.name}}</td>
+              <td>{{detachment.cp}}</td>
+              <td v-if="detachment.hq[0]==detachment.hq[1]" class="passive"></td>
+              <td v-else-if="detachment.hq[0]=='0'" class="aux">
+                {{detachment.hq[0]}} - {{detachment.hq[1]}}
+              </td>
+              <td v-else class="required">
+                {{detachment.hq[0]}} - {{detachment.hq[1]}}
+                <!-- <select v-bind:name="detachment.name+'-hq'" size="1">
+                  <option value="" label="" ></option>
+                  <option v-for="(unit, key) in units" v-if="unit.role=='HQ'" v-bind:value="key" v-bind:label="unit.name" ></option>
+                </select> -->
+              </td>
+              <td v-if="detachment.troops[0]==detachment.troops[1]" class="passive"></td>
+              <td v-else-if="detachment.troops[0]=='0'" class="aux">
+                <!-- {{detachment.troops}} -->
+                {{detachment.troops[0]}} - {{detachment.troops[1]}}
+<!--                 <select v-bind:name="detachment.name+'-troops'" size="1">
+                  <option value="" label="" ></option>
+                  <option v-for="(unit, key) in units" v-if="unit.role=='Troops'" v-bind:value="key" v-bind:label="unit.name" ></option>
+                </select> -->
+              </td>
+              <td v-else class="required">
+                {{detachment.troops[0]}} - {{detachment.troops[1]}}
+              </td>
+              <td v-if="detachment.elites[0]==detachment.elites[1]" class="passive"></td>
+              <td v-else-if="detachment.elites[0]=='0'" class="aux">
+                {{detachment.elites[0]}} - {{detachment.elites[1]}}
+              </td>
+              <td v-else class="required">
+                <!-- {{detachment.elites}} -->
+                {{detachment.elites[0]}} - {{detachment.elites[1]}}
+                <!-- <select v-bind:name="detachment.name+'-elites'" size="1">
+                  <option value="" label="" ></option>
+                  <option v-for="(unit, key) in units" v-if="unit.role=='Elites'" v-bind:value="key" v-bind:label="unit.name" ></option>
+                </select> -->
+              </td>
+              <td v-if="detachment.fast[0]==detachment.fast[1]" class="passive"></td>
+              <td v-else-if="detachment.fast[0]=='0'" class="aux">
+                {{detachment.fast[0]}} - {{detachment.fast[1]}}
+              </td>
+              <td v-else class="required">
+                <!-- {{detachment.fast}} -->
+                {{detachment.fast[0]}} - {{detachment.fast[1]}}
+                <!-- <select v-bind:name="detachment.name+'-fast'" size="1">
+                  <option value="" label="" ></option>
+                  <option v-for="(unit, key) in units" v-if="unit.role=='Fast'" v-bind:value="key" v-bind:label="unit.name" ></option>
+                </select> -->
+              </td>
+              <td v-if="detachment.heavy[0]==detachment.heavy[1]" class="passive"></td>
+              <td v-else-if="detachment.heavy[0]=='0'" class="aux">
+                {{detachment.heavy[0]}} - {{detachment.heavy[1]}}
+              </td>
+              <td v-else class="required">
+                <!-- {{detachment.heavy}} -->
+                {{detachment.heavy[0]}} - {{detachment.heavy[1]}}
+                <!-- <select v-bind:name="detachment.name+'-heavy'" size="1">
+                  <option value="" label="" ></option>
+                  <option v-for="(unit, key) in units" v-if="unit.role=='Heavy'" v-bind:value="key" v-bind:label="unit.name" ></option>
+                </select> -->
+              </td>
+              <td v-if="detachment.flyers[0]==detachment.flyers[1]" class="passive"></td>
+              <td v-else-if="detachment.flyers[0]=='0'" class="aux">
+                {{detachment.flyers[0]}} - {{detachment.flyers[1]}}
+              </td>
+              <td v-else class="required">
+                <!-- {{detachment.flyers}} -->
+                {{detachment.flyers[0]}} - {{detachment.flyers[1]}}
+                <!-- <select v-bind:name="detachment.name+'-flyers'" size="1">
+                  <option value="" label="" ></option>
+                  <option v-for="(unit, key) in units" v-if="unit.role=='Flyers'" v-bind:value="key" v-bind:label="unit.name" ></option>
+                </select> -->
+              </td>
+              <td v-if="detachment.dedicated[0]==detachment.dedicated[1]" class="passive"></td>
+              <td v-else-if="detachment.dedicated[0]=='0'" class="aux">
+                {{detachment.dedicated[0]}} - {{detachment.dedicated[1]}}
+              </td>
+              <td v-else class="required">
+                <!-- {{detachment.dedicated}} -->
+                {{detachment.dedicated[0]}} - {{detachment.dedicated[1]}}
+                <!-- <select v-bind:name="detachment.name+'-dedicated'" size="1">
+                  <option value="" label="" ></option>
+                  <option v-for="(unit, key) in units" v-if="unit.role=='Dedicated Transport'" v-bind:value="key" v-bind:label="unit.name" ></option>
+                </select> -->
+              </td>
+              <td v-if="detachment.low[0]==detachment.low[1]" class="passive"></td>
+              <td v-else-if="detachment.low[0]=='0'" class="aux">
+                {{detachment.low[0]}} - {{detachment.low[1]}}
+              </td>
+              <td v-else class="required">
+                <!-- {{detachment.low}} -->
+                {{detachment.low[0]}} - {{detachment.low[1]}}
+                <!-- <select v-bind:name="detachment.name+'-lordofwar'" size="1">
+                  <option value="" label="" ></option>
+                  <option v-for="(unit, key) in units" v-if="unit.role=='Lord of War'" v-bind:value="key" v-bind:label="unit.name" ></option>
+                </select> -->
+              </td>
+              <td v-if="detachment.fortification[0]==detachment.fortification[1]" class="passive"></td>
+              <td v-else-if="detachment.fortification[0]=='0'" class="aux">
+                {{detachment.fortification[0]}} - {{detachment.fortification[1]}}
+              </td>
+              <td v-else class="required">
+                <!-- {{detachment.fortification}} -->
+                {{detachment.fortification[0]}} - {{detachment.fortification[1]}}
+                <!-- <select v-bind:name="detachment.name+'-fortification'" size="1">
+                  <option value="" label="" ></option>
+                  <option v-for="(unit, key) in units" v-if="unit.role=='Fortification'" v-bind:value="key" v-bind:label="unit.name" ></option>
+                </select> -->
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </template>
     <!-- SPECIAL RULES (Canticles of the Omnissiah, Warp Storm, etc) -->
-    <div v-if="specialrules" class="special">
-      <h2>{{specialrules.specialrulesname}}</h2>
-      <h3 v-html="specialrules.specialrulestext"></h3>
-      <table>
-        <tr  v-for="(specrule, key, index) in specialrules" v-if="index>'1'"><td>{{key}}</td><td><span v-html="specrule"></span></td></tr>
-      </table>
-    </div>
-    <!-- ADAPTATIONS (Dogma, Hive Fleet, etc) -->
-    <div v-if="adaptation" class="special">
-      <h2>{{adaptation.adaptationname}}</h2>
-      <table>
-        <tr  v-for="(adapt, key, index) in adaptation" v-if="index!='0'"><td>{{key}}</td><td><span v-html="adapt"></span></td></tr>
-      </table>
-      <!-- <div  v-for="(adapt, key) in adaptation" v-if="!adaptation.adaptationname">{{key}} : {{adapt}}</div> -->
-    </div>
-    <!-- TRAITS -->
-    <div v-if="traits" class="special">
-      <h2>Traits</h2>
-      <table>
-        <tr  v-for="(trait, key) in traits"><td>{{key}}</td><td><span v-html="trait"></span></td></tr>
-      </table>
-      <!-- <div  v-for="(trait, key) in traits">{{key}} : <span v-html="trait"></span>></div> -->
-    </div>
-    <!-- RELICS -->
-    <div v-if="relics" class="special">
-      <h2>Relics</h2>
-      <table>
-        <tr  v-for="(relic, key) in relics"><td>{{key}}</td><td><span v-html="relic"></span></td></tr>
-      </table>
-      <!-- <div  v-for="(relic, key) in relics">{{key}} : <span v-html="relic"></span>></div> -->
-    </div>
-    <!-- MAGIC -->
-    <div v-if="magic" class="special">
-      <h2>{{magic.magicname}}</h2>
-      <table>
-        <tr>
-          <td>Spell</td>
-          <td>Cast</td>
-          <td>Range</td>
-          <td>Target</td>
-          <td>Effect</td>
-        </tr>
-        <tr  v-for="(spell, key, index) in magic.spell">
-          <td>{{key}}</td>
-          <td>{{spell.cast}}</td>
-          <td>{{spell.range}}</td>
-          <td>{{spell.target}}</td>
-          <td>{{spell.effect}}</td>
-          <!-- <td><span v-html="spell"></span></td> -->
-        </tr>
-      </table>
-    </div>
+    <template v-if="showarmyinfo">
+      <div v-if="specialrules" class="special">
+        <h2>{{specialrules.specialrulesname}}</h2>
+        <h3 v-html="specialrules.specialrulestext"></h3>
+        <table class="standard-table" cellpadding="0px" cellspacing="0px">
+          <tr  v-for="(specrule, key, index) in specialrules" v-if="index>'1'"><td>{{key}}</td><td><span v-html="specrule"></span></td></tr>
+        </table>
+      </div>
+      <!-- ADAPTATIONS (Dogma, Hive Fleet, etc) -->
+      <div v-if="adaptation" class="special">
+        <h2>{{adaptation.adaptationname}}</h2>
+        <table  class="standard-table" cellpadding="0px" cellspacing="0px">
+          <tr  v-for="(adapt, key, index) in adaptation" v-if="index!='0'"><td>{{key}}</td><td><span v-html="adapt"></span></td></tr>
+        </table>
+      </div>
+      <!-- TRAITS -->
+      <div v-if="traits" class="special">
+        <h2>Traits</h2>
+        <table class="standard-table" cellpadding="0px" cellspacing="0px">
+          <tr  v-for="(trait, key) in traits"><td>{{key}}</td><td><span v-html="trait"></span></td></tr>
+        </table>
+      </div>
+      <!-- RELICS -->
+      <div v-if="relics" class="special">
+        <h2>Relics</h2>
+        <table class="standard-table" cellpadding="0px" cellspacing="0px">
+          <tr  v-for="(relic, key) in relics"><td>{{key}}</td><td><span v-html="relic"></span></td></tr>
+        </table>
+      </div>
+      <!-- MAGIC -->
+      <div v-if="magic" class="special">
+        <h2>{{magic.magicname}}</h2>
+        <table class="standard-table" cellpadding="0px" cellspacing="0px">
+          <tr>
+            <td>Spell</td>
+            <td>Cast</td>
+            <td>Range</td>
+            <td>Target</td>
+            <td>Effect</td>
+          </tr>
+          <tr  v-for="(spell, key, index) in magic.spell">
+            <td>{{key}}</td>
+            <td>{{spell.cast}}</td>
+            <td>{{spell.range}}</td>
+            <td>{{spell.target}}</td>
+            <td>{{spell.effect}}</td>
+          </tr>
+        </table>
+      </div>
+    </template>
     <!-- WARSCROLLS -->
-      <!-- <div v-bind:id="dynamicId" v-for="(army, key) in armies"> -->
     <div id="unitlist"> 
-      <span>{{ army.armyname }}</span>
-      <!-- UNIT -->
-        <div class="warscroll" v-if="selected" v-for="unit in units">
+      <div class="warscroll" v-if="selected" v-for="(unit,key,index) in units" :name="unit.name.split(' ').join('')" :id="key">
           <div>
             <div v-if="unit.models" class="name">
               <span class="wrap"></span>
@@ -115,7 +249,7 @@
               ></modelinput>
               <!-- <span class="modelpts noprint">pts</span> -->
             </div>
-            <div v-else class="name">{{unit.name}} ({{unit.role}}) ({{unit.pointspermodel}} PTS)
+            <div v-else class="name"><span class="wrap"></span>{{unit.name}} ({{unit.role}}) ({{unit.pointspermodel}} PTS)
               <modelinput v-bind:pts="unit.pointspermodel"  v-bind:name="unit.name" v-bind:value="1" v-bind:min="0" v-bind:max="10"></modelinput>
             </div>
             <modelstats v-bind:model="unit"></modelstats>
@@ -139,18 +273,18 @@
           </div>
         </div>
     </div>
+<!--     <div id="copyright" class="copyright">
+      <p>Web part, <a href="http://www.github.com/freealchemist">FreeAlchemist</a></p>
+      <p>Contents copyright ©, <a href="http://www.games-workshop.com">Games Workshop</a></p>
+    </div> -->
   </div>
 </div>
 
-<!-- <div id="copyright" class="copyright">
-	<p>Web part, translation to russian, <a href="http://www.github.com/freealchemist">FreeAlchemist</a></p>
-	<p>Contents copyright ©, <a href="http://www.games-workshop.com">Games Workshop</a></p>
-</div> -->
+
 
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/general.js"></script>
 <script type="text/javascript" src="js/library_40k.js"></script>
-<!-- <script type="text/javascript" src="js/40k.js"></script> -->
 <script type="text/javascript" src="js/vue.js"></script>
 <script type="text/javascript" src="js/vm-40k.js"></script>
 </body>
