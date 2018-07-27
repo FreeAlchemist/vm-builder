@@ -185,13 +185,33 @@ Vue.component('modelkeywords', {
  </table>`
 })
 
+Vue.component('unit-list-item', {
+  // props: ['unitkey','unitrole','unitname','listid'],
+  props: ['unitname'],
+  // data:function(){
+  //   return{
+  //     listitemid: 'list-fallen'
+  //   }
+  // },
+  template: `
+   <div class="list-item" onclick="getTo(this.id)">{{unitname}}</div>
+ `,
+ // methods:{
+ //   getTo: function (){
+ //    // var elmnt = document.getElementById(this.id);
+ //    // elmnt.scrollIntoView();
+ //    console.log(listitemid)
+ //   },
+ // },
+})
+
 var builder = new Vue({
   el: '#builder',
   data: {
     armies:library,
     detachments:detachments,
     units:library.fallenangels.units,
-    selected: 'darkangels',
+    selected: 'tyranids',
     army:Object,
     weapons:Object,
     abilities:Object,
@@ -201,8 +221,7 @@ var builder = new Vue({
     adaptation:Object,
     magic:Object,
     units:Object,
-    showarmyinfo:false,
-    showdetachments:false,
+    showinfo:'showarmylist',
   },
   methods:{
     getArmy: function (){
@@ -220,7 +239,9 @@ var builder = new Vue({
 })
 
 function getTo(elemid){
-  var elmnt = document.getElementById(elemid);
+  // console.log(elemid)
+  // console.log(elemid.split('list-').join(''))
+  var elmnt = document.getElementById(elemid.split('list-').join(''));
 elmnt.scrollIntoView();
 }
 /*

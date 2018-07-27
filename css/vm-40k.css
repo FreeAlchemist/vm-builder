@@ -39,11 +39,13 @@ body{
 	background-color: rgb(234, 230, 225);
 	border:1px solid Black;
 	font-size: 10pt;
-	z-index: 100;
+	z-index: 95;
 	/*box-shadow: Black 1px 1px 3px;*/
 	/*box-shadow: #291109 0px 4px 8px;*/
 	background-color: Oldlace;
+	background-color: rgba(220, 190, 105,1);
 	box-shadow: inset rgb(43, 47, 63) 0px 1px 8px;
+	width: 200px;
 }
 /*.menupart{
 	float: left;
@@ -110,6 +112,7 @@ a.menubtn{
 	line-height: 30px;
 }
 .menubtn:hover{border-color: Linen;}
+.menubtn:active{background-color: rgba(185,160,85,1);color:black;}
 .wrap{
 width: 0;
 width: 100%;
@@ -178,13 +181,6 @@ span.wrap_closed,span.wrap{
 		}
 	}
 
-
-
-
-#menu{
-	width: 200px;
-	background-color: #bde2ce;
-}
 .menubtn{    padding: 0px 5px;}
 a.menubtn{width: 175px;}
 .warscroll{
@@ -310,7 +306,8 @@ a.menubtn{width: 175px;}
 }
 #detachments{
 	position: absolute;
-	top: 150px;
+	/*top: 150px;*/
+	top: 0px;
 	left: 0px;
 	background-color: Linen;
 	border:1px solid Black;
@@ -326,9 +323,11 @@ a.menubtn{width: 175px;}
 	border-top:3px solid black;
 	text-align: center;
 	height: 40px;
-	width: 110px;
-	vertical-align: top;
+	/*width: 110px;*/
+	width: 65px;
+	vertical-align: middle;
 	font-size: 10pt;
+	padding: 0px 3px; 
 }
 #detachment td.cp{
 	width: 30px;
@@ -363,6 +362,7 @@ a.menubtn{width: 175px;}
     text-align: center;
     z-index: 85;
     background-color: rgb(241, 235, 233);
+    overflow: auto;
 }
 #overlay div {
     /* width: 60%; */
@@ -381,7 +381,7 @@ a.menubtn{width: 175px;}
     border: 1px solid Black;
     font-size: 8pt;
     display: block;
-    z-index: 90;
+    z-index: 100;
 }
 #detachments select {
     font-size: 10pt;
@@ -394,4 +394,43 @@ a.menubtn{width: 175px;}
 	    bottom: 0px;
 	    width: 99%;
 	    text-align: center;
+}
+
+/*.list{
+	width: 100%;
+}*/
+/*.list div{
+	float: left;
+}*/
+.list-role{
+	background-color: rgba(80,95,75,1);
+	background-color: rgba(110,125,95,1);
+	width: 100%;
+}
+.list-item{
+	cursor: pointer;
+	text-align: left;
+	padding-left: 5px;
+}
+.list-item:hover{
+	cursor: pointer;
+	background-color: rgba(220,190,105,1);
+	border-left: solid 5px rgba(255, 245, 165,1);
+	border-right: solid 5px rgba(255, 245, 165,1);
+	color: black;
+}
+.list-item:active{background-color: rgba(200,180,100,1);}
+.list{
+	max-height: 700px;
+	overflow: auto;
+	font-size: 10pt;
+	width: 92%;
+}
+.infolist {
+	text-align: left;
+
+}
+.infolist input{
+	height: 25px;
+	width: 25px;
 }
